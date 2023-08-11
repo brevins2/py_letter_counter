@@ -1,8 +1,9 @@
-para = input("Enter paragraph/sentences to get count \n")
+para = input("\nEnter paragraph/sentences to get count \n")
+
 consonants = []
 numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 alphernumeric = ['!', ',', '@', '#', '$', '%', '&', '*', '(', ')', '-', '_', '=',
-                 '+', '/', '\\', ']']
+                 '+', '/', '\\', ']', '.', '?', '{', '}', '[', '`', '~', '|', '.']
 
 
 def letter_counter(paragraph):
@@ -36,13 +37,11 @@ def array_of_letters(sentence):
 def alphabetsfn():
     alphabets = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
                  'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
-    print('Alphabetical letters are: ' + str(alphabets))
     return alphabets
 
 
 def vowelsfn():
     vowel = ['a', 'e', 'i', 'o', 'u']
-    print('Vowels are: ' + str(vowel))
     return vowel
 
 
@@ -50,7 +49,7 @@ def consonantsfn(alphabets, vowels):
     for leta in alphabets:
         if leta not in vowels:
             consonants.append(leta)
-    print('Consonants are: ' + str(consonants))
+    return consonants
 
 
 def checkcase(paragraph):
@@ -65,10 +64,11 @@ def checkcase(paragraph):
             upperCase.append(letter)
 
         elif letter in lowerLetter and letter.isalpha():
-            lowerCase.append(letter)
+            if letter not in lowerCase:
+                lowerCase.append(letter)
 
-    print('Letters in upper Case: ' + str(upperCase))
-    print('Letters in lower case: ' + str(lowerCase))
+    print('Letters in upper Case present: ' + str(upperCase))
+    print('Letters in lower case present: ' + str(lowerCase))
 
 
 def checknumbers(paragraph):
@@ -83,11 +83,13 @@ def checknumbers(paragraph):
 
 def checkalphernumeric(paragraph):
     presentAlphanumerics = []
-    for symbol in paragraph:
-        if symbol.isalnum():
+    for symbol in alphernumeric:
+        if symbol not in paragraph:
+            continue
+        else:
             presentAlphanumerics.append(symbol)
 
-    print('alphanumerical characters: ' + str(presentAlphanumerics))
+    print('alphanumerical characters present: ' + str(presentAlphanumerics))
 
 
 letter_counter(para)
